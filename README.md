@@ -1,0 +1,1 @@
+# gamedoora-aggregation-proxy
