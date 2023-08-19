@@ -28,4 +28,8 @@ public interface SkillsServicesApi {
             value = "/",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<List<SkillsDTO>> getAllSkills(@RequestParam(required = false) String name);
+    @GetMapping(
+            value = "/users",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<SkillsDTO>> getAllSkillsByEmail(@RequestParam(required = true) String email);
 }

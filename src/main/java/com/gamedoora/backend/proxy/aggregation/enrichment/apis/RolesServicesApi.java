@@ -27,4 +27,11 @@ public interface RolesServicesApi {
 
     @GetMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<List<RoleDTO>> getAllRoles(@RequestParam(required = false) String name);
+
+    @GetMapping(value = "/skills", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<RoleDTO>> getAllRolesBySkillName(@RequestParam(required = false) String name);
+
+    @GetMapping(value = "/users", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<RoleDTO>> getAllRolesByEmail(@RequestParam(required = true) String email);
+
 }

@@ -35,4 +35,25 @@ public interface UserServicesApi {
             value = "/",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam(required = false) String name);
+
+    @GetMapping(
+            value = "/{name}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<UserDTO>> getAllUsersByName(@PathVariable String name);
+
+    @GetMapping(
+            value = "/skills/{name}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<UserDTO>> getAllUsersBySkillsName(@PathVariable String name);
+
+    @GetMapping(
+            value = "/roles/{name}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<UserDTO>> getAllUsersByRoles(@PathVariable String name)//confirm mapping
+    ;
+
+    @GetMapping(
+            value = "/email",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = true) String email);
 }
