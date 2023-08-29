@@ -12,7 +12,7 @@ import java.util.List;
 public class RetriableSkillsServicesClient {
  private SkillsServicesClient skillsServicesClient;
   private RetryTemplate retryTemplate;
-    public List<SkillsDTO> getRolesForUserByEmail(String email){
+    public List<SkillsDTO> getSkillsForUserByEmail(String email){
         return getRetryTemplate().execute(retryContext -> {
            return getSkillsServicesClient().getSkillsForUserByEmail(email);
         });

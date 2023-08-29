@@ -17,7 +17,7 @@ public class FeignCustomErrorDecoder implements ErrorDecoder {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        log.error("Client call={0} failed with exception{1}".formatted(methodKey, message));
+    log.error(String.format("Client call=%s failed with exception=%s",methodKey, message));
         return new ClientResponseException(
                 message.getMessage(),
                 response.status()

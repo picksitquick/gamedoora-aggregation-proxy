@@ -17,8 +17,8 @@ public class FeignClientConfig {
     public ErrorDecoder errorDecoder(){
         return new FeignCustomErrorDecoder();
     }
-    @Bean
-    public Retryer retryer() {
-        return new Retryer.Default(100, 2000, 3);
-    }
+//    @Bean
+//    public Retryer retryer() {
+//        return new Retryer.Default(100, 2000, 3);
+//    }
 }
