@@ -22,14 +22,16 @@ public class UserProfileRoute extends RouteBuilder {
                 .maximumRedeliveries(3)
                 .logStackTrace(true)
                 .handled(false);
-        from("direct:userProfileQuery")
-                .multicast(new GroupedMessageAggregationStrategy()).parallelProcessing()
-                .stopOnException()
-                .to("bean:retriableRolesServicesClient?method=getRolesForUserByEmail")
-                .to("bean:retriableSkillsServicesClient?method=getSkillsForUserByEmail")
+
+        from("direct:userQuery")
                 .to("bean:retriableUsersServicesClient?method=getRolesForUserByEmail")
                 .end();
-
+        from("direct:userRoleQuery")
+                .to("bean:retriableRolesServicesClient?method=getRolesForUserByEmail")
+                .end();
+        from("direct:userSkillsQuery")
+                .to("bean:retriableSkillsServicesClient?method=getSkillsForUserByEmail")
+                .end();
     }
 
 
