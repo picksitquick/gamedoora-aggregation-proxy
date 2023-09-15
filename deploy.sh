@@ -23,7 +23,7 @@ DEST_PATH="/usr/lib/systemd/system/"
 echo "=====Copying files========="
 pwd
 ls
-sshpass -p $SSH_PASS scp -o StrictHostKeyChecking=no  ./gamedoora-user-services.service "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
+sshpass -p $SSH_PASS scp -o StrictHostKeyChecking=no  ./gamedoora-aggregation-proxy.service "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
 echo "==========================="
 echo "==Stopping service======="
 # Stop the service
