@@ -1,0 +1,11 @@
+[Unit]
+Description=gamedoora-aggregation-proxy
+After=syslog.target gamedoora-config-server.service
+
+[Service]
+User=gamedoora
+ExecStart=/opt/gamedoora/gamedoora-aggregation-proxy.jar
+SuccessExitStatus=143
+Environment="CONFIG_SERVER=http://localhost:8888"
+[Install]
+WantedBy=multi-user.target
