@@ -22,4 +22,8 @@ public class UserServicesClient {
     UserDTO getUserByEmail(@NonNull String email){
         return getUserServicesApi().getUserByEmail(email).getBody();
     }
+
+    UserDTO addRoleToUser(UserDTO userDTO){return getUserServicesApi().addRoles(userDTO).getBody();}
+
+    UserDTO addSkillToUser(UserDTO userDTO){return getUserServicesApi().addSkills(userDTO).getBody();}
 }
