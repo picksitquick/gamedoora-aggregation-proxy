@@ -38,14 +38,18 @@ public class UserDataAggregatorAssembler {
 
     public void addRoles(GdUser user) throws ClientResponseException{
         List<RoleDTO> roleDTOList = user.getRoles();
-        if(roleDTOList.isEmpty() || user.getUser().getEmail().isEmpty()) throw new ClientResponseException("No Roles found", 400);
+        if(roleDTOList.isEmpty() || user.getUser().getEmail().isEmpty()){
+            throw new ClientResponseException("No Roles found", 400);
+        }
 
         getProducerTemplate().requestBody("direct:addUserRoleQuery", roleDTOList, ArrayList.class);
     }
 
     public void addSkills(GdUser user)throws ClientResponseException{
         List<SkillsDTO> skillsDTOList = user.getSkills();
-        if(skillsDTOList.isEmpty() || user.getUser().getEmail().isEmpty())throw new ClientResponseException("No Roles found", 400);
+        if(skillsDTOList.isEmpty() || user.getUser().getEmail().isEmpty()){
+            throw new ClientResponseException("No Roles found", 400);
+        }
 
         getProducerTemplate().requestBody("direct:addUserSkillQuery", skillsDTOList, ArrayList.class);
     }
