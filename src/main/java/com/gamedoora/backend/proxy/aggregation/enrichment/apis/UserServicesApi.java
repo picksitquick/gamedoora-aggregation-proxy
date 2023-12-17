@@ -49,11 +49,22 @@ public interface UserServicesApi {
     @GetMapping(
             value = "/roles/{name}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<List<UserDTO>> getAllUsersByRoles(@PathVariable String name)//confirm mapping
-    ;
+    ResponseEntity<List<UserDTO>> getAllUsersByRoles(@PathVariable String name);//confirm mapping
 
     @GetMapping(
             value = "/email",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = true) String email);
+
+    @PostMapping(
+            value = "/roles",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<UserDTO> addRoles(@RequestBody UserDTO usersDto); // email part will be in userDto
+
+    @PostMapping(
+            value = "/skills",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<UserDTO> addSkills(@RequestBody UserDTO usersDto);
 }

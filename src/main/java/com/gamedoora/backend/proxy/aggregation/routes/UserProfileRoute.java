@@ -3,11 +3,8 @@ package com.gamedoora.backend.proxy.aggregation.routes;
 import com.gamedoora.backend.proxy.aggregation.enrichment.clients.RetriableRolesServicesClient;
 import com.gamedoora.backend.proxy.aggregation.enrichment.clients.RetriableSkillsServicesClient;
 import com.gamedoora.backend.proxy.aggregation.enrichment.clients.RetriableUsersServicesClient;
-import com.gamedoora.backend.proxy.aggregation.exceptions.ClientResponseException;
 import feign.FeignException;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.processor.aggregate.GroupedExchangeAggregationStrategy;
-import org.apache.camel.processor.aggregate.GroupedMessageAggregationStrategy;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,6 +28,12 @@ public class UserProfileRoute extends RouteBuilder {
                 .end();
         from("direct:userSkillsQuery")
                 .to("bean:retriableSkillsServicesClient?method=getSkillsForUserByEmail")
+                .end();
+        from("direct:addUserRoleQuery")
+                .to("bean:retriableUsersServicesClient?method=addRolesForUser")
+                .end();
+        from("direct:addUserSkillQuery")
+                .to("bean:retriableUsersServicesClient?method=addSkillsForUser")
                 .end();
     }
 

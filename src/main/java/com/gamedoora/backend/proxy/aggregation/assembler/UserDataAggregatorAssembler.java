@@ -1,5 +1,6 @@
 package com.gamedoora.backend.proxy.aggregation.assembler;
 
+import com.gamedoora.backend.proxy.aggregation.exceptions.ClientResponseException;
 import com.gamedoora.backend.proxy.aggregation.routes.UserProfileRoute;
 import com.gamedoora.model.dto.GdUser;
 import com.gamedoora.model.dto.RoleDTO;
@@ -7,9 +8,7 @@ import com.gamedoora.model.dto.SkillsDTO;
 import com.gamedoora.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.support.DefaultExchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +34,24 @@ public class UserDataAggregatorAssembler {
                 .user(userDTO)
                 .roles(roleDTOList)
                 .build();
+    }
+
+    public void addRoles(GdUser user) throws ClientResponseException{
+        List<RoleDTO> roleDTOList = user.getRoles();
+        if(roleDTOList.isEmpty() || user.getUser().getEmail().isEmpty()){
+            throw new ClientResponseException("No Roles found", 400);
+        }
+
+        getProducerTemplate().requestBody("direct:addUserRoleQuery", roleDTOList, ArrayList.class);
+    }
+
+    public void addSkills(GdUser user)throws ClientResponseException{
+        List<SkillsDTO> skillsDTOList = user.getSkills();
+        if(skillsDTOList.isEmpty() || user.getUser().getEmail().isEmpty()){
+            throw new ClientResponseException("No Roles found", 400);
+        }
+
+        getProducerTemplate().requestBody("direct:addUserSkillQuery", skillsDTOList, ArrayList.class);
     }
 
     public ProducerTemplate getProducerTemplate() {
