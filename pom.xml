@@ -114,7 +114,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub gamedoora Apache Maven Packages for user services</name>
-			<url>https://maven.pkg.github.com/gamedoora/gamedoora-user-services</url>
+			<url>https://maven.pkg.github.com/gamedoora/gamedoora-aggregator-proxy</url>
 		</repository>
 	</distributionManagement>
 
